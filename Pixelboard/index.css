@@ -1,12 +1,60 @@
 ﻿body {
+    background-color: rgb(128, 128, 128);
+}
+
+
+#contents {
+    max-width: 820px;
+    margin: auto;
+    position: relative;
+}
+
+#cooldowntimer {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: darkslategrey;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+
+#pixelboard {
+    border: 10px solid rgb(212, 212, 212);
+    margin: auto;
+    align-self: center;
+}
+
+#randomize {
+    display: block;
+}
+
+#palette {
+    background-color: rgb(212, 212, 212);
+    padding: 5px;
+    display: block;
 }
 
 input.palettecolor {
     border: solid 1px;
     margin: 4px 4px;
+    border-radius: 4px;
+    height: 30px;
+    width: 30px;
 }
 
 input.palettecolor:hover {
-    border: solid 2px;
-    margin: 3px 3px;
+    border: dashed 2px rgb(97, 169, 221);
+
 }
+
+input.palettecolor.selected {
+    border: solid;
+}
+

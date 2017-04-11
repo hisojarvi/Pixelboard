@@ -9,11 +9,12 @@ namespace Pixelboard
     public class PixelboardHub : Hub
     {
         private static Canvas Canvas = new Canvas(100, 100, Palette.GetDefaultPalette());
+        private static int Cooldown = 10;
 
         public PixelboardHub()
         {
         }
-
+        
         public void RandomizeCanvas()
         {
             Canvas.RandomizeColors();
@@ -23,7 +24,7 @@ namespace Pixelboard
         public void PutPixel(int x, int y, int colorIndex)
         {
             Canvas.SetPixel(x, y, colorIndex);
-
+            Clients.Caller.sendCooldown(Cooldown);
             Clients.All.broadcastPixel(x, y, Canvas.GetPixel(x, y));
         }
 
