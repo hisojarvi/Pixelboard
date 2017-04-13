@@ -8,10 +8,18 @@ namespace Pixelboard
 {
     public class Canvas
     {
-        public int Width { get; }
-        public int Height { get; }
-        public Palette Palette { get; }
-        public Color[] Contents { get; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Palette Palette { get; set; }
+        public Color[] Contents { get; set; }
+
+        
+        public event PixelDrawnHandler PixelDrawn;
+        public delegate void PixelDrawnHandler(object sender, EventArgs e);
+
+        public Canvas()
+        {
+        }
 
         public Canvas(int width, int height, Palette palette)
         {
@@ -32,6 +40,7 @@ namespace Pixelboard
             {
                 var i = y * Width + x;
                 Contents[i] = Palette.Colors[paletteIndex];
+                PixelDrawn(this, EventArgs.Empty);
             }
         }
 

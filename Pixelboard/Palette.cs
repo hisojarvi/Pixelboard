@@ -7,7 +7,12 @@ namespace Pixelboard
 {
     public class Palette
     {
-        public Color[] Colors { get; }
+        public Color[] Colors { get; set; }
+
+        public Palette()
+        {
+            Colors = new Color[] { new Color(0, 0, 0) };
+        }
 
         public Palette(Color[] colors)
         {

@@ -12,6 +12,8 @@ namespace Pixelboard
     {
         public void Configuration(IAppBuilder app)
         {
+            
+
             IPixelboardStorage storage = new FileStorage();
             var canvas = storage.LoadCanvas();
             if (canvas == null)
@@ -20,8 +22,8 @@ namespace Pixelboard
                 canvas = new Canvas(15, 15, Palette.GetDefaultPalette());
                 storage.SaveCanvas(canvas);
             }
-
-            //var canvas = new Canvas(15, 15, Palette.GetDefaultPalette());
+            // When a pixel is drawn, store canvas
+            canvas.PixelDrawn += (o, e) => { storage.SaveCanvas(canvas); };
 
             var settings = new PixelboardSettings()
             {
