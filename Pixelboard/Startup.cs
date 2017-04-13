@@ -12,8 +12,16 @@ namespace Pixelboard
     {
         public void Configuration(IAppBuilder app)
         {
-            // TODO Read from persistent storage
-            var canvas = new Canvas(15, 15, Palette.GetDefaultPalette());
+            IPixelboardStorage storage = new FileStorage();
+            var canvas = storage.LoadCanvas();
+            if (canvas == null)
+            {
+                // Initialize persistent canvas storage
+                canvas = new Canvas(15, 15, Palette.GetDefaultPalette());
+                storage.SaveCanvas(canvas);
+            }
+
+            //var canvas = new Canvas(15, 15, Palette.GetDefaultPalette());
 
             var settings = new PixelboardSettings()
             {
